@@ -18,13 +18,15 @@ package com.android.settings;
 
 import android.content.Context;
 import android.os.SystemProperties;
-import android.preference.EditTextPreference;
 import android.provider.Settings;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.AttributeSet;
+import android.view.View;
 
-public class HostnamePreference extends EditTextPreference {
+import com.android.settings.CustomEditTextPreference;
+
+public class HostnamePreference extends CustomEditTextPreference {
 
     private static final String TAG = "HostnamePreference";
 
@@ -48,6 +50,11 @@ public class HostnamePreference extends EditTextPreference {
 
     public HostnamePreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    @Override
+    public void onAttached() {
+        super.onAttached();
 
         // determine the default hostname
         String id = Settings.Secure.getString(getContext().getContentResolver(),
